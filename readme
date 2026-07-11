@@ -1,0 +1,20 @@
+# Secure Login System
+
+A Flask-based Secure Login System developed for a cybersecurity internship.
+
+## Features
+- User Registration
+- Secure Login
+- Password Hashing (bcrypt)
+- SQLite Database
+- SQL Injection Protection
+- Session Management
+
+## Technologies Used
+- Python
+- Flask
+- SQLite
+- bcrypt
+
+## Author
+Bhaathma E. D.
