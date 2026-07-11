@@ -1,0 +1,45 @@
+
+## ⚙️ Installation Steps
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/yourusername/Secure-Login-System.git
+2. Open Project Folder
+cd Secure-Login-System
+3. Install Dependencies
+pip install -r requirements.txt
+4. Run Application
+python app.py
+5. Open Browser
+http://127.0.0.1:5000
+🔒 Security Features
+Passwords are never stored in plain text
+Bcrypt hashing protects user passwords
+Parameterized SQL queries prevent SQL injection
+Secure session handling
+User input validation
+📸 Screenshots
+Add screenshots of:
+Registration page
+Login page
+Successful login
+Database records
+🎯 Future Improvements
+Two-Factor Authentication (2FA)
+Login attempt detection
+Email verification
+Password strength checker
+CAPTCHA protection
+👨‍💻 Author
+Bhaathma E.D
+B.E Computer Science Engineering (Cyber Security)
+📄 License
+This project is licensed under the MIT License.
+
+After adding it:
+
+```bash
+git add README.md
+git commit -m "Added README documentation"
+git push
