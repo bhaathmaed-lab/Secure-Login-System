@@ -1,0 +1,124 @@
+User
+ |
+ | Enter Username + Password
+ |
+Login Page
+ |
+Validate Input
+ |
+Check Database
+ |
+Hash Password Compare
+ |
+ ┌───────────────┐
+ | Correct?      |
+ └───────────────┘
+      |
+ Yes  |  No
+      |
+Dashboard   Error Message
+      |
+ Logout
+
+
+
+
+
+from flask import Flask, render_template, request, redirect, session
+from database import get_user
+from utils import verify_password
+
+app = Flask(__name__)
+app.secret_key = "secure_secret_key"
+
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+
+@app.route("/login", methods=["GET","POST"])
+def login():
+
+    if request.method == "POST":
+
+        username = request.form["username"]
+        password = request.form["password"]
+
+        user = get_user(username)
+
+        if user and verify_password(password,user[2]):
+
+            session["username"] = username
+            return redirect("/dashboard")
+
+        else:
+            return "Invalid Username or Password"
+
+    return render_template("login.html")
+
+
+@app.route("/dashboard")
+def dashboard():
+
+    if "username" in session:
+        return render_template(
+            "dashboard.html",
+            username=session["username"]
+        )
+
+    return redirect("/login")
+
+
+@app.route("/logout")
+def logout():
+
+    session.pop("username",None)
+    return redirect("/login")
+
+
+if __name__=="__main__":
+    app.run(debug=True)
+utils.py (Password Security)
+from werkzeug.security import generate_password_hash, check_password_hash
+
+
+def hash_password(password):
+
+    return generate_password_hash(
+        password
+    )
+
+
+def verify_password(password,hashed):
+
+    return check_password_hash(
+        hashed,password
+    )
+database.py
+import sqlite3
+
+
+def connect():
+
+    return sqlite3.connect(
+        "users.db"
+    )
+
+
+def get_user(username):
+
+    con=connect()
+
+    cur=con.cursor()
+
+    cur.execute(
+        "SELECT * FROM users WHERE username=?",
+        (username,)
+    )
+
+    user=cur.fetchone()
+
+    con.close()
+
+    return user
