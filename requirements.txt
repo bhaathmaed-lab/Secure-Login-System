@@ -1,0 +1,12 @@
+For your Secure Login System (Python Flask + SQLite) project, create a file named requirements.txt and add:
+Flask==3.0.3
+Flask-Bcrypt==1.0.1
+Werkzeug==3.0.3
+Purpose:
+Flask → Web application framework
+Flask-Bcrypt → Secure password hashing
+Werkzeug → Password security utilities and Flask dependency
+To install all requirements:
+pip install -r requirements.txt
+After installing, run your project:
+python app.py
